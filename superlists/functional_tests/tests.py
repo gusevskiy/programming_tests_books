@@ -1,24 +1,26 @@
-from django.test import LiveServerTestCase
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.by import By
-from selenium.common.exceptions import WebDriverException
 import time
 import unittest
 
+from django.test import LiveServerTestCase
+from selenium import webdriver
+from selenium.common.exceptions import WebDriverException
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+
+
 class NewVisitorTest(LiveServerTestCase):
     '''тест нового поситителя'''
-    
+
     MAX_WAIT: int = 10
-    
+
     def setUp(self) -> None:
         '''установка'''
         self.browser = webdriver.Firefox()
-        
+
     def tearDown(self) -> None:
         '''демонтаж'''
         self.browser.quit()
-        
+
     def wait_for_row_in_list_table(self, row_text):
         '''ожидать строку в таблице списка'''
         start_time = time.time()
@@ -32,8 +34,7 @@ class NewVisitorTest(LiveServerTestCase):
                 if time.time() - start_time > self.MAX_WAIT:
                     raise e
                 time.sleep(0.5)
-        
-            
+
     def test_can_start_a_list_and_retrieve_it_later(self):
         '''тест: можно начать список и получить его позже'''
         # Эдит слышала про крутое новое онлайн-приложение со списком
@@ -73,7 +74,7 @@ class NewVisitorTest(LiveServerTestCase):
         # выводится небольшой текст с пояснениями.
         self.fail('Закончить тест!')
         # Она посещает этот URL-адрес – ее список по-прежнему там.
-        
+
     # def test_multiple_users_can_start_lists_at_different_urls(self):
     #     '''тест: многочисленные пользователи могут начать списки по разным url'''
     #     # Эдит начинает новый список
@@ -85,7 +86,7 @@ class NewVisitorTest(LiveServerTestCase):
     #     # Она замечает, что ее список имеет уникальный URL-адрес
     #     edith_list_url = self.browser.current_url
     #     self.assertRegex(edith_list_url, '/lists/.+')
-        
+
     #     # Теперь новый пользователь, Фрэнсис, приходит на сайт.
     #     ## Мы используем новый сеанс браузера, тем самым обеспечивая, чтобы никакая
     #     ## информация от Эдит не прошла через данные cookie и пр.
@@ -96,14 +97,14 @@ class NewVisitorTest(LiveServerTestCase):
     #     page_text = self.browser.find_element(By.TAG_NAME, 'body').text
     #     self.assertNotIn('Купить павлиньи перья', page_text)
     #     self.assertNotIn('Сделать мушку', page_text)
-        
+
     #     # Фрэнсис начинает новый список, вводя новый элемент. Он менее
     #     # интересен, чем список Эдит...
     #     inputbox = self.browser.find_element(By.ID, 'id_new_item')
     #     inputbox.send_keys('Купить молоко')
     #     inputbox.send_keys(Keys.ENTER)
     #     self.wait_for_row_in_list_table('1: Купить молоко')
-        
+
     #     # Фрэнсис получает уникальный URL-адрес
     #     francis_list_url = self.browser.current_url
     #     self.assertRegex(francis_list_url, '/lists/.+')
@@ -112,6 +113,7 @@ class NewVisitorTest(LiveServerTestCase):
     #     page_text = self.browser.find_element(By.TAG_NAME, 'body').text
     #     self.assertNotIn('Купить павлиньи перья', page_text)
     #     self.assertIn('Купить молоко', page_text)
-            
+
+
 if __name__ == '__main__':
     unittest.main()
