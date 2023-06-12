@@ -8,7 +8,7 @@
 
 [github репозиторий автора](https://github.com/hjwp/book-example)
 
-
+https://www.obeythetestinggoat.com/book/appendix_github_links.html
 
 разные команды во время выполнения кода
 

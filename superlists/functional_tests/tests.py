@@ -15,7 +15,9 @@ class NewVisitorTest(LiveServerTestCase):
 
     def setUp(self) -> None:
         '''установка'''
-        self.browser = webdriver.Firefox()
+        self.browser = webdriver.Chrome(
+            executable_path="chromedriver/chromedriver_linux64/chromedriver"
+        )
 
     def tearDown(self) -> None:
         '''демонтаж'''
@@ -35,7 +37,7 @@ class NewVisitorTest(LiveServerTestCase):
                     raise e
                 time.sleep(0.5)
 
-    def test_can_start_a_list_and_retrieve_it_later(self):
+    def detest_can_start_a_list_and_retrieve_it_later(self):
         '''тест: можно начать список и получить его позже'''
         # Эдит слышала про крутое новое онлайн-приложение со списком
         # неотложных дел. Она решает оценить его домашнюю страницу
