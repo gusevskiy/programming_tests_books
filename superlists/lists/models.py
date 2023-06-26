@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Item(models.Model):
-    '''элемент списка'''
+    """Элемент списка"""
     text = models.TextField(default='')
